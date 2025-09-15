@@ -1,5 +1,6 @@
 <?php
 // includes/header.php
+session_start(); // Asegúrate de que la sesión esté iniciada
 ?>
 <header
     class="h-[113px] flex flex-row items-center pt-10 pb-5 px-5 max-w-screen-xl m-auto max-md:justify-between max-md:min-h-[50px] max-md:p-4 relative">
@@ -34,9 +35,16 @@
     </nav>
 
     <div class="flex flex-1 justify-end items-center gap-6 max-md:gap-5">
-        <a href="login.php" class="hover:text-orange-500 transition">
-            <i class="bi bi-person text-2xl"></i>
-        </a>
+        <div class="flex flex-col items-center">
+            <a href="login.php" class="hover:text-orange-500 transition">
+                <i class="bi bi-person text-2xl"></i>
+            </a>
+            <?php if (isset($_SESSION['username'])): ?>
+                <span class="text-sm text-gray-700 mt-1">
+                    Bienvenid@, <?= htmlspecialchars($_SESSION['nombre'] ?? $_SESSION['username']) ?>
+                </span>
+            <?php endif; ?>
+        </div>
 
         <button id="menuToggle" class="md:hidden text-3xl focus:outline-none">
             <i class="bi bi-list"></i>
@@ -49,5 +57,11 @@
     <a href="cotizar.php" class="block hover:text-[#ff7947] transition">Cotizar</a>
     <a href="seguimiento.php" class="block hover:text-[#ff7947] transition">Seguimiento</a>
     <a href="contacto.php" class="block hover:text-[#ff7947] transition">Contacto</a>
-    <a href="login.php" class="block hover:text-[#ff7947] transition">Login</a>
+    <?php if (isset($_SESSION['username'])): ?>
+        <form action="logout.php" method="POST">
+            <button type="submit" class="block text-left hover:text-[#ff7947] w-full">Cerrar Sesión</button>
+        </form>
+    <?php else: ?>
+        <a href="login.php" class="block hover:text-[#ff7947] transition">Login</a>
+    <?php endif; ?>
 </div>
