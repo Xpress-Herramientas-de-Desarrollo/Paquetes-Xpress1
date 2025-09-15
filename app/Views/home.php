@@ -18,6 +18,20 @@
         </div>
     </section>
 
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-screen-xl m-auto px-5 relative">
+            <div class="overflow-hidden relative rounded-lg shadow-lg">
+                <div class="slider flex transition-transform duration-500">
+                    <img src="https://images.pexels.com/photos/6169641/pexels-photo-6169641.jpeg" class="w-full flex-shrink-0" alt="Envío 1">
+                    <img src="https://images.pexels.com/photos/6407446/pexels-photo-6407446.jpeg" class="w-full flex-shrink-0" alt="Envío 2">
+                    <img src="https://images.pexels.com/photos/4440774/pexels-photo-4440774.jpeg" class="w-full flex-shrink-0" alt="Envío 3">
+                </div>
+                <button id="prev" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white text-red-500 rounded-full p-2 shadow hover:bg-gray-100">&lt;</button>
+                <button id="next" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white text-red-500 rounded-full p-2 shadow hover:bg-gray-100">&gt;</button>
+            </div>
+        </div>
+    </section>
+
     <!-- Servicios -->
     <section class="py-16 bg-gray-100">
         <div class="max-w-screen-xl m-auto px-5 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -73,7 +87,50 @@
             </div>
         </div>
     </section>
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-screen-xl m-auto px-5 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="flex justify-center">
+                <img src="https://images.pexels.com/photos/4440874/pexels-photo-4440874.jpeg" 
+                    alt="Servicio Especial" 
+                    class="rounded-lg shadow-lg max-w-sm">
+            </div>
+            <div>
+                <h2 class="text-3xl font-bold mb-4">Servicio Personalizado</h2>
+                <p class="text-gray-600 mb-4">
+                    Nuestro equipo se asegura de que cada envío reciba la atención que merece. 
+                    Nos adaptamos a tus necesidades, ofreciendo un gran servicio de calidad, 
+                    seguimiento personalizado y soporte al cliente en todo momento.
+                </p>
+                <p class="text-gray-600 mb-4">
+                    Además, trabajamos con un sistema logístico ágil que garantiza entregas rápidas 
+                    y seguras, sin importar el destino. Queremos que tengas la tranquilidad de que 
+                    tu paquete llegará siempre en las mejores condiciones.
+                </p>
+                <p class="text-gray-600">
+                    Confía en nosotros para tus envíos importantes: tu satisfacción y la de tus clientes 
+                    es nuestra mayor prioridad.
+                </p>
+            </div>
+        </div>
+    </section>
+
 </main>
 
 <?= $this->include('layouts/footer') ?>
 
+<script>
+    const slider = document.querySelector('.slider');
+    const slides = slider.children;
+    const totalSlides = slides.length;
+    let index = 0;
+
+    document.getElementById('next').addEventListener('click', () => {
+        index = (index + 1) % totalSlides;
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    });
+
+    document.getElementById('prev').addEventListener('click', () => {
+        index = (index - 1 + totalSlides) % totalSlides;
+        slider.style.transform = `translateX(-${index * 100}%)`;
+    });
+</script>
