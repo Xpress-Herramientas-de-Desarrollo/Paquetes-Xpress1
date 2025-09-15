@@ -1,0 +1,131 @@
+/* ======= ESTILOS GENERALES ======= */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background: #f9f9f9;
+    color: #333;
+}
+
+h1, h2 {
+    margin-bottom: 15px;
+}
+
+.contenedor {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.seccion-principal {
+    padding: 50px 20px;
+}
+
+.titulo-principal {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #ff7947;
+}
+
+.titulo-secundario {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #ff7947;
+}
+
+.descripcion-seccion {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.formulario {
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #444;
+}
+
+.campo input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.acciones {
+    text-align: center;
+}
+
+.btn-primario {
+    background: #ff7947;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-primario:hover {
+    background: #e66735;
+}
+
+.resultado {
+    margin-top: 20px;
+}
+
+.alerta-exito {
+    background: #e6f9ed;
+    border: 1px solid #28a745;
+    padding: 15px;
+    border-radius: 8px;
+    color: #155724;
+}
+
+.alerta-exito span {
+    font-weight: bold;
+}
+
+.precio-final {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.mapa-seccion {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.titulo-secundario {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff7947;
+    margin-bottom: 10px;
+}
+
+.descripcion-seccion {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.mapa {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
