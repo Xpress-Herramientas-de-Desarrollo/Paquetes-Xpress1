@@ -13,8 +13,8 @@
                 Tu solución confiable para envíos nacionales e internacionales.
             </p>
             <a href="#"
-               class="bg-white text-red-500 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 transition">
-               Comienza Ahora
+                class="bg-white text-red-500 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 transition">
+                Comienza Ahora
             </a>
         </div>
     </section>
