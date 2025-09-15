@@ -1,12 +1,24 @@
 <?php
-$servidor = "localhost";
-$usuario = "root";
-$clave = "";
-$bd = "envios";
+// includes/conexion.php
 
-$conexion = new mysqli($servidor, $usuario, $clave, $bd);
+$host = "localhost";
+$db   = "bd_xpress";
+$user = "root"; 
+$pass = "";
+$charset = "utf8mb4";
 
-if ($conexion->connect_error) {
-    die("Error en la conexión: " . $conexion->connect_error);
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+
+$options = [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES => false
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (PDOException $e) {
+    echo "Error de conexión: " . $e->getMessage();
+    exit;
 }
 ?>
