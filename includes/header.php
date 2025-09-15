@@ -1,7 +1,9 @@
 <?php
-// includes/header.php
-session_start(); // Asegúrate de que la sesión esté iniciada
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); 
+}
 ?>
+
 <header
     class="h-[113px] flex flex-row items-center pt-10 pb-5 px-5 max-w-screen-xl m-auto max-md:justify-between max-md:min-h-[50px] max-md:p-4 relative">
 

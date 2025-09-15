@@ -2,7 +2,9 @@
 include("includes/head.php");
 include("includes/header.php");
 include("includes/conexion.php");
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Si se envió POST, procesar registro
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
