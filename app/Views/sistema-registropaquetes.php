@@ -39,7 +39,11 @@
                     <li>
                         <hr class="dropdown-divider" />
                     </li>
-                    <li><a class="dropdown-item" href="{{route('logout')}}">Cerrar Sesion</a></li>
+                    <li>
+                        <form action="<?= base_url('logout') ?>" method="POST" style="margin: 0; padding: 0;">
+                            <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+                        </form>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -79,7 +83,7 @@
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Bienvenido:
-                    <?= esc(session()->get('nombre')) ?>
+                        <?= esc(session()->get('nombre')) ?>
                     </div>
                 </div>
             </nav>
