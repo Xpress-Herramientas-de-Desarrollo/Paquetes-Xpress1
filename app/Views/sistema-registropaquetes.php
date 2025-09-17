@@ -73,7 +73,7 @@
                             Todos los Paquetes
                         </a>
 
-                        <a class="nav-link" href="{{route('paquetes.create')}}">
+                        <a class="nav-link" href="<?= base_url('sistema') ?>">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-box-open"></i></div>
                             Nuevo Paquete
                         </a>

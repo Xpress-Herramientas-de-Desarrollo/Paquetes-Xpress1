@@ -68,12 +68,12 @@
 
 
 
-                        <a class="nav-link" href="{{route('paquetes.index')}}">
+                        <a class="nav-link" href="<?= base_url('sistemapaquetes') ?>">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-box-open"></i></div>
                             Todos los Paquetes
                         </a>
 
-                        <a class="nav-link" href="{{route('paquetes.create')}}">
+                        <a class="nav-link" href="<?= base_url('sistema') ?>">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-box-open"></i></div>
                             Nuevo Paquete
                         </a>
@@ -95,17 +95,14 @@
                 <!-- CONTENIDO-->
 
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4 text-center">Paquetes</h1>
+                
+                <h1 class="mt-4 text-center">Paquetes</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="{{ route('panel') }}">Inicio</a></li>
                         <li class="breadcrumb-item active">Paquetes</li>
                     </ol>
 
-                    {{--COMENTARIO<div class="mb-4">
-    <a href="{{route('paquetes.create')}}" >
-                    <button type="button" class="btn btn-primary">Añadir Nuevo Paquete</button>
-                    </a>
-                </div>--}}
+                   
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
@@ -130,84 +127,64 @@
                             </thead>
 
                             <tfoot>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Distrito</th>
-                                    <th>Cobrar</th>
-                                    <th>Direccion</th>
-                                    <th>Celular</th>
-                                    <th>Nota</th>
-                                    <th>Fecha</th>
-                                    <th>Link Direccion</th>
-                                    <th>Estado</th>
-                                    <th>Foto Entrega</th>
-                                    <th>Acciones</th>
-                                </tr>
+                              
                             </tfoot>
 
                             <tbody>
-                                @foreach($paquetes as $pivotrep_paquete)
+                            
                                 <tr>
-                                    <td>{{-- Esto es un comentario: Nombre --}}
-                                        {{$pivotrep_paquete->paquete->nombre_cliente}}
+                                    <td>
+                                       Diego
                                     </td>
 
-                                    <td>{{-- Esto es un comentario: Distrito --}}
-                                        {{$pivotrep_paquete->paquete->distrito->nombre}}
+                                    <td>
+                                        San isidro
                                     </td>
 
-                                    <td>{{-- Esto es un comentario: Cobrar--}}
-                                        {{$pivotrep_paquete->paquete->cobrar}}
-                                    </td>
-
-
-                                    <td>{{-- Esto es un comentario: Direccion--}}
-                                        {{$pivotrep_paquete->paquete->direccion}}
+                                    <td>
+                                       S/89
                                     </td>
 
 
-                                    <td>{{-- Esto es un comentario:Celular --}}
-                                        {{$pivotrep_paquete->paquete->celular}}
+                                    <td>
+                                        av. los delfines 456
                                     </td>
 
-                                    <td>{{-- Esto es un comentario: Nota--}}
-                                        {{$pivotrep_paquete->paquete->nota}}
+
+                                    <td>
+                                        985886878
                                     </td>
 
-                                    <td>{{-- Esto es un comentario:Fecha --}}
-                                        {{$pivotrep_paquete->paquete->fecha}}
+                                    <td>
+                                        se va 5pm
                                     </td>
 
-                                    <td>{{-- Esto es un comentario:Link Direccion --}}
-                                        @if($pivotrep_paquete->paquete->link_direc !== null)
+                                    <td>
+                                        14-04-2022
+                                    </td>
+
+                                    <td>
+                                   
                                         <a href="{{$pivotrep_paquete->paquete->link_direc}}" target="_blank" rel="noopener noreferrer">Toca Aquí</a>
-                                        @else
-
-                                        @endif
+                                        
                                     </td>
 
                                     <td>
-                                        @if($pivotrep_paquete->estado === 'entregado')
+                                     
                                         <span class="fw-bolder rounded p-1 bg-success text-white">entregado</span>
-                                        @elseif($pivotrep_paquete->estado === 'fallo')
-                                        <span class="fw-bolder rounded p-1 bg-danger text-white">fallo</span>
-                                        @elseif($pivotrep_paquete->estado === 'reprogramado')
-                                        <span class="fw-bolder rounded p-1 bg-warning text-dark">reprogramado</span>
-                                        @else
-                                        <span class="fw-bolder rounded p-1 bg-secondary text-white">En espera</span>
-                                        @endif
+                                       
 
                                     </td>
 
                                     <td>
-                                        @if($pivotrep_paquete->foto_entrega !== null)
+                                    
                                         <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fotoModal-{{$pivotrep_paquete->id}}">Ver</button>
-                                        @endif
+                                   
 
                                     </td>
 
                                     <td>
-                                        @if($pivotrep_paquete->estado === null)
+                                       
                                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                             <form action="{{route('paquetes.edit',['paquete'=>$pivotrep_paquete->paquete])}}" method="get">
 
@@ -215,13 +192,11 @@
                                             </form>
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal-{{$pivotrep_paquete->id}}">Eliminar</button>
                                         </div>
-                                        @else
-                                        <label class="fst-italic">No Disponible</label>
-                                        @endif
+                                        
                                     </td>
 
                                 </tr>
-                                {{-- Esto es un comentario:FIN DE LA TABLA --}}
+                             
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="confirmModal-{{$pivotrep_paquete->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -287,7 +262,6 @@
                                 </div>
 
 
-                                @endforeach
                             </tbody>
                         </table>
                     </div>
