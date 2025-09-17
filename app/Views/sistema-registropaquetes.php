@@ -68,7 +68,7 @@
 
 
 
-                        <a class="nav-link" href="{{route('paquetes.index')}}">
+                        <a class="nav-link" href="<?= base_url('sistemapaquetes') ?>">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-box-open"></i></div>
                             Todos los Paquetes
                         </a>

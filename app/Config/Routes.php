@@ -11,6 +11,7 @@ $routes->get('/', 'Home::index');
 
 $routes->get('login', 'Login::index');
 $routes->get('sistema', 'Login::sistemaindex');
+$routes->get('sistemapaquetes', 'Login::sistemapaquetes');
 $routes->post('login/autenticar', 'Login::autenticar');
 $routes->post('logout', 'Login::logout');
 

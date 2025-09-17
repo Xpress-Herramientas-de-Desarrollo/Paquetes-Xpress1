@@ -81,4 +81,9 @@ class Login extends BaseController
         return view('sistema-registropaquetes');
     }
 
+    public function sistemapaquetes()
+    {
+        return view('sistema-todoslospaquetes');
+    }
+
 }
