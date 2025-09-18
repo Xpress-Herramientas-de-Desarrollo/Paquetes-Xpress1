@@ -113,6 +113,58 @@
             </div>
         </div>
     </section>
+    
+    <section class="py-16 bg-white">
+    <div class="max-w-screen-xl m-auto px-5 text-center">
+        <h2 class="text-3xl font-bold mb-12">Lo que dicen nuestros clientes</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        
+        <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+            <div class="flex justify-center mb-4">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                alt="Cliente 1" 
+                class="w-16 h-16 rounded-full shadow">
+            </div>
+            <p class="text-gray-600 italic mb-4">
+            “Excelente servicio, mi paquete llegó antes de lo esperado y en perfectas condiciones.”
+            </p>
+            <h3 class="font-semibold text-red-500">Carlos Gutiérrez</h3>
+            <span class="text-sm text-gray-500">Cliente frecuente</span>
+        </div>
+
+        
+        <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+            <div class="flex justify-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/45.jpg" 
+                alt="Cliente 2" 
+                class="w-16 h-16 rounded-full shadow">
+            </div>
+            <p class="text-gray-600 italic mb-4">
+            “Muy fácil de usar la plataforma y el seguimiento en tiempo real me dio mucha confianza.”
+            </p>
+            <h3 class="font-semibold text-red-500">María López</h3>
+            <span class="text-sm text-gray-500">Empresaria</span>
+        </div>
+
+        
+        <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
+            <div class="flex justify-center mb-4">
+            <img src="https://randomuser.me/api/portraits/men/76.jpg" 
+                alt="Cliente 3" 
+                class="w-16 h-16 rounded-full shadow">
+            </div>
+            <p class="text-gray-600 italic mb-4">
+            “El mejor servicio de envíos que he probado, además con tarifas muy competitivas.”
+            </p>
+            <h3 class="font-semibold text-red-500">Luis Fernández</h3>
+            <span class="text-sm text-gray-500">Tienda Online</span>
+        </div>
+
+        </div>
+    </div>
+    </section>
+
 
 </main>
 
