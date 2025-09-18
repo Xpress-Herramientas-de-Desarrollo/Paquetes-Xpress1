@@ -114,56 +114,88 @@
         </div>
     </section>
     
-    <section class="py-16 bg-white">
-    <div class="max-w-screen-xl m-auto px-5 text-center">
-        <h2 class="text-3xl font-bold mb-12">Lo que dicen nuestros clientes</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Testimonios en Slider -->
+<section class="py-16 bg-white">
+  <div class="max-w-screen-xl m-auto px-5 text-center relative">
+    <h2 class="text-3xl font-bold mb-12">Lo que dicen nuestros clientes</h2>
+
+    <!-- Contenedor del slider -->
+    <div class="overflow-hidden relative rounded-lg shadow-lg max-w-3xl m-auto">
+      <div class="slider-testimonios flex transition-transform duration-500">
         
-        
-        <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
-            <div class="flex justify-center mb-4">
+        <!-- Testimonio 1 -->
+        <div class="w-full flex-shrink-0 p-8 bg-gray-50">
+          <div class="flex justify-center mb-4">
             <img src="https://randomuser.me/api/portraits/men/32.jpg" 
-                alt="Cliente 1" 
-                class="w-16 h-16 rounded-full shadow">
-            </div>
-            <p class="text-gray-600 italic mb-4">
+                 alt="Cliente 1" 
+                 class="w-16 h-16 rounded-full shadow">
+          </div>
+          <p class="text-gray-600 italic mb-4">
             “Excelente servicio, mi paquete llegó antes de lo esperado y en perfectas condiciones.”
-            </p>
-            <h3 class="font-semibold text-red-500">Carlos Gutiérrez</h3>
-            <span class="text-sm text-gray-500">Cliente frecuente</span>
+          </p>
+          <h3 class="font-semibold text-red-500">Carlos Gutiérrez</h3>
+          <span class="text-sm text-gray-500">Cliente frecuente</span>
         </div>
 
-        
-        <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
-            <div class="flex justify-center mb-4">
+        <!-- Testimonio 2 -->
+        <div class="w-full flex-shrink-0 p-8 bg-gray-50">
+          <div class="flex justify-center mb-4">
             <img src="https://randomuser.me/api/portraits/women/45.jpg" 
-                alt="Cliente 2" 
-                class="w-16 h-16 rounded-full shadow">
-            </div>
-            <p class="text-gray-600 italic mb-4">
+                 alt="Cliente 2" 
+                 class="w-16 h-16 rounded-full shadow">
+          </div>
+          <p class="text-gray-600 italic mb-4">
             “Muy fácil de usar la plataforma y el seguimiento en tiempo real me dio mucha confianza.”
-            </p>
-            <h3 class="font-semibold text-red-500">María López</h3>
-            <span class="text-sm text-gray-500">Empresaria</span>
+          </p>
+          <h3 class="font-semibold text-red-500">María López</h3>
+          <span class="text-sm text-gray-500">Empresaria</span>
         </div>
 
-        
-        <div class="bg-gray-50 p-6 rounded-lg shadow hover:shadow-lg transition">
-            <div class="flex justify-center mb-4">
+        <!-- Testimonio 3 -->
+        <div class="w-full flex-shrink-0 p-8 bg-gray-50">
+          <div class="flex justify-center mb-4">
             <img src="https://randomuser.me/api/portraits/men/76.jpg" 
-                alt="Cliente 3" 
-                class="w-16 h-16 rounded-full shadow">
-            </div>
-            <p class="text-gray-600 italic mb-4">
+                 alt="Cliente 3" 
+                 class="w-16 h-16 rounded-full shadow">
+          </div>
+          <p class="text-gray-600 italic mb-4">
             “El mejor servicio de envíos que he probado, además con tarifas muy competitivas.”
-            </p>
-            <h3 class="font-semibold text-red-500">Luis Fernández</h3>
-            <span class="text-sm text-gray-500">Tienda Online</span>
+          </p>
+          <h3 class="font-semibold text-red-500">Luis Fernández</h3>
+          <span class="text-sm text-gray-500">Tienda Online</span>
         </div>
+      </div>
 
-        </div>
+      <!-- Botones -->
+      <button id="prevTest" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white text-red-500 rounded-full p-2 shadow hover:bg-gray-100">&lt;</button>
+      <button id="nextTest" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white text-red-500 rounded-full p-2 shadow hover:bg-gray-100">&gt;</button>
     </div>
-    </section>
+  </div>
+</section>
+
+<script>
+  const sliderTest = document.querySelector('.slider-testimonios');
+  const slidesTest = sliderTest.children;
+  const totalSlidesTest = slidesTest.length;
+  let indexTest = 0;
+
+  document.getElementById('nextTest').addEventListener('click', () => {
+    indexTest = (indexTest + 1) % totalSlidesTest;
+    sliderTest.style.transform = `translateX(-${indexTest * 100}%)`;
+  });
+
+  document.getElementById('prevTest').addEventListener('click', () => {
+    indexTest = (indexTest - 1 + totalSlidesTest) % totalSlidesTest;
+    sliderTest.style.transform = `translateX(-${indexTest * 100}%)`;
+  });
+
+  // Opcional: autoplay cada 5 segundos
+  setInterval(() => {
+    indexTest = (indexTest + 1) % totalSlidesTest;
+    sliderTest.style.transform = `translateX(-${indexTest * 100}%)`;
+  }, 5000);
+</script>
+
 
 
 </main>
