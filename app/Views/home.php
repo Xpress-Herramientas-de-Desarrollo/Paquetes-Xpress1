@@ -93,7 +93,9 @@
             </div>
             <div>
                 <h2 class="text-3xl font-bold mb-4">Servicio Personalizado</h2>
-                <p class="text-white-300 mb-4">
+
+                <p class="text-black-600 mb-4">
+
                     Nuestro equipo se asegura de que cada envío reciba la atención que merece. 
                     Nos adaptamos a tus necesidades, ofreciendo un gran servicio de calidad, 
                     seguimiento personalizado y soporte al cliente en todo momento.
