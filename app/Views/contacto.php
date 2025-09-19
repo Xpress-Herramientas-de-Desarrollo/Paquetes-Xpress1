@@ -27,7 +27,7 @@
             <div class="text-center">
                 <button type="submit"
                         class="bg-[#ff7947] text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
-                    Enviar Mensaje
+                    Enviar aquí tu mensaje
                 </button>
             </div>
         </form>
