@@ -37,7 +37,7 @@
                 <i class="bi bi-speedometer2 text-4xl text-red-500 mb-4"></i>
                 <h3 class="text-xl font-semibold mb-2"><Envíos Rápidos</h3>
                 <p class="text-gray-600">
-                    Entrega ráidas para todo el Perú.
+                    Entrega en tiempo récord a nivel nacional e internacional.
                 </p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
