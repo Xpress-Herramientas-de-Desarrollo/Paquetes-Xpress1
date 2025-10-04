@@ -35,7 +35,7 @@
         <div class="max-w-screen-xl m-auto px-5 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
                 <i class="bi bi-speedometer2 text-4xl text-red-500 mb-4"></i>
-                <h3 class="text-xl font-semibold mb-2">Envíos Rápidos</h3>
+                <h3 class="text-xl font-semibold mb-2"><Envíos Rápidos</h3>
                 <p class="text-gray-600">
                     Entrega ráidas para todo el Perú.
                 </p>
