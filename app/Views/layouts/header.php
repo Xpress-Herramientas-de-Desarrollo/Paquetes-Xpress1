@@ -20,6 +20,10 @@
             <i class="bi bi-currency-dollar text-xl group-hover:text-orange-500"></i>
             <span>Cotizar</span>
         </a>
+        <a href="<?= base_url('envio') ?>" class="flex flex-col items-center hover:text-orange-500 transition group">
+            <i class="bi bi-box-seam text-xl group-hover:text-orange-500"></i>
+            <span>Envía tu paquete</span>
+
         <a href="<?= base_url('seguimiento') ?>"
             class="flex flex-col items-center hover:text-orange-500 transition group">
             <i class="bi bi-search text-xl group-hover:text-orange-500"></i>
@@ -72,6 +76,7 @@
 <div id="mobileMenu" class="hidden bg-gray-900 text-white p-5 space-y-4 md:hidden">
     <a href="<?= base_url('/') ?>" class="block hover:text-[#ff7947] transition">Inicio</a>
     <a href="<?= base_url('cotizar') ?>" class="block hover:text-[#ff7947] transition">Cotizar</a>
+    <a href="<?= base_url('envio') ?>" class="block hover:text-[#ff7947] transition">Envía tu paquete</a>
     <a href="<?= base_url('seguimiento') ?>" class="block hover:text-[#ff7947] transition">Seguimiento</a>
     <a href="<?= base_url('contacto') ?>" class="block hover:text-[#ff7947] transition">Contacto</a>
 

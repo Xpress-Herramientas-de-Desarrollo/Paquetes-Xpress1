@@ -21,6 +21,13 @@ $routes->post('registro/crear', 'Registro::crear');
 $routes->get('cotizar', 'Cotizar::index');
 $routes->post('cotizar/calcular', 'Cotizar::calcular');
 
+$routes->get('envio', 'Envio::index');
+
+$routes->get('enviopuerta', 'Enviopuerta::index');
+
+$routes->get('enviolocal', 'Enviolocal::index');
+
+
 $routes->get('seguimiento', 'Seguimiento::index');
 $routes->post('seguimiento/consultar', 'Seguimiento::consultar');
 
