@@ -62,7 +62,7 @@ class Login extends BaseController
                 ]);
             }
 
-            return redirect()->to('/sistema'); 
+            return redirect()->to('/login'); 
         } catch (\Exception $e) {
             $session->setFlashdata('error', 'Ocurrió un error al iniciar sesión: ' . $e->getMessage());
             return redirect()->to('/login');
@@ -74,16 +74,4 @@ class Login extends BaseController
         session()->destroy();
         return redirect()->to('/login');
     }
-
-
-    public function sistemaindex()
-    {
-        return view('sistema-registropaquetes');
-    }
-
-    public function sistemapaquetes()
-    {
-        return view('sistema-todoslospaquetes');
-    }
-
 }
