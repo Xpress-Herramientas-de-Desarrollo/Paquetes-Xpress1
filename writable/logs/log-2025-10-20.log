@@ -1,0 +1,67 @@
+ERROR - 2025-10-20 01:07:40 --> Error connecting to the database: mysqli_sql_exception: Access denied for user 'root'@'localhost' (using password: NO) in C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Database\MySQLi\Connection.php:201
+Stack trace:
+#0 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Database\MySQLi\Connection.php(201): mysqli->real_connect()
+#1 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#2 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#4 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\BaseModel.php(715): CodeIgniter\Model->doFirst()
+#6 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\app\Controllers\Login.php(27): CodeIgniter\BaseModel->first()
+#7 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\CodeIgniter.php(933): App\Controllers\Login->autenticar()
+#8 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#9 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#10 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#12 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\public\index.php(59): CodeIgniter\Boot::bootWeb()
+#13 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\rewrite.php(44): require_once('...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: Access denied for user '****'@'localhost' (using password: NO) in C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect()
+#1 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query()
+#3 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\BaseModel.php(715): CodeIgniter\Model->doFirst()
+#5 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\app\Controllers\Login.php(27): CodeIgniter\BaseModel->first()
+#6 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\CodeIgniter.php(933): App\Controllers\Login->autenticar()
+#7 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController()
+#8 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+#9 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+#11 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\public\index.php(59): CodeIgniter\Boot::bootWeb()
+#12 C:\Users\GAMER\Desktop\Proyectos de Visual\paquetes-XPRESS\system\rewrite.php(44): require_once('...')
+#13 {main}
+CRITICAL - 2025-10-20 01:08:53 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "{{route('panel')}}"
+[Method: GET, Route: %7B%7Broute%28%27panel%27%29%7D%7D]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars()
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle()
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\GAMER\\Desktop\\Proyectos de Visual\\paquetes-XPRESS\\public\\index.php')
+CRITICAL - 2025-10-20 01:08:55 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "{{Storage::url('public"
+[Method: GET, Route: %7B%7BStorage::url%28%27public/entregas/%27.$pivotrep_paquete-%3Efoto_entrega%29%7D%7D]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars()
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle()
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\GAMER\\Desktop\\Proyectos de Visual\\paquetes-XPRESS\\public\\index.php')
+CRITICAL - 2025-10-20 01:08:58 --> CodeIgniter\HTTP\Exceptions\BadRequestException: The URI you submitted has disallowed characters: "{{Storage::url('public"
+[Method: GET, Route: %7B%7BStorage::url%28%27public/entregas/%27.$pivotrep_paquete-%3Efoto_entrega%29%7D%7D]
+in SYSTEMPATH\Router\Router.php on line 741.
+ 1 SYSTEMPATH\Router\Router.php(207): CodeIgniter\Router\Router->checkDisallowedChars()
+ 2 SYSTEMPATH\CodeIgniter.php(832): CodeIgniter\Router\Router->handle()
+ 3 SYSTEMPATH\CodeIgniter.php(455): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 4 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\GAMER\\Desktop\\Proyectos de Visual\\paquetes-XPRESS\\public\\index.php')

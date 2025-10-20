@@ -1,0 +1,5 @@
+writable/logs/
+writable/session/
+
+*.log
+*.tmp

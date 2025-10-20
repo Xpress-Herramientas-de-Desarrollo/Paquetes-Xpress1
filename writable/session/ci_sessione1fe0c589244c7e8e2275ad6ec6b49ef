@@ -1,2 +1,0 @@
-__ci_last_regenerate|i:1757960379;_ci_previous_url|s:37:"http://localhost:8081/index.php/login";error|s:158:"Ocurrió un error al iniciar sesión: Unable to connect to the database.
-Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: NO)";__ci_vars|a:1:{s:5:"error";s:3:"old";}
