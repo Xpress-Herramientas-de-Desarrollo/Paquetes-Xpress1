@@ -33,27 +33,30 @@
 
     <div class="flex flex-1 justify-end items-center gap-4 max-md:gap-3">
         <?php if (session()->get('id_usuario')): ?>
-            <div class="flex items-center gap-2">
-                <!-- Icono perfil con nombre debajo, hover en naranja -->
-                <div class="flex flex-col items-center group cursor-pointer">
-                    <a href="<?= base_url('login') ?>" class="flex flex-col items-center group cursor-pointer">
-                        <i class="bi bi-person text-2xl group-hover:text-orange-500 transition"></i>
-                        <span class="text-sm text-gray-700 mt-1 group-hover:text-orange-500 transition">
-                            Bienvenid@, <?= esc(session()->get('nombre')) ?>
-                        </span>
-                    </a>
-
+            <!-- Usuario con menú desplegable -->
+            <div class="relative">
+                <div id="userButton" class="flex flex-col items-center cursor-pointer group">
+                    <i class="bi bi-person text-2xl group-hover:text-orange-500 transition"></i>
+                    <span class="text-sm text-gray-700 mt-1 group-hover:text-orange-500 transition">
+                        Hola, <?= esc(session()->get('nombre')) ?>
+                    </span>
                 </div>
 
-                <!-- Botón rojo de logout solo icono -->
-                <form action="<?= base_url('logout') ?>" method="POST">
-                    <button type="submit" class="bg-red-500 p-2 rounded-full text-white hover:bg-red-600 transition">
-                        <i class="bi bi-box-arrow-right"></i>
-                    </button>
-                </form>
+                <div id="userMenu"
+                    class="hidden absolute left-1/2 -translate-x-1/2 mt-2 w-44 bg-white shadow-lg rounded-lg border border-gray-200 z-50">
+                    <div
+                        class="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-white transform rotate-45 border-t border-l border-gray-200">
+                    </div>
+
+                    <form action="<?= base_url('logout') ?>" method="POST">
+                        <button type="submit"
+                            class="w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-500 hover:text-white rounded-lg transition">
+                            Cerrar Sesión
+                        </button>
+                    </form>
+                </div>
             </div>
         <?php else: ?>
-            <!-- Solo link al login si no hay sesión -->
             <a href="<?= base_url('login') ?>" class="flex flex-col items-center group cursor-pointer">
                 <i class="bi bi-person text-2xl group-hover:text-orange-500 transition"></i>
                 <span class="text-sm mt-1 group-hover:text-orange-500 transition">Iniciar Sesión</span>
@@ -80,3 +83,18 @@
         <a href="<?= base_url('login') ?>" class="block hover:text-[#ff7947] transition">Login</a>
     <?php endif; ?>
 </div>
+
+<script>
+    const userButton = document.getElementById('userButton');
+    const userMenu = document.getElementById('userMenu');
+
+    userButton.addEventListener('click', () => {
+        userMenu.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!userButton.contains(e.target) && !userMenu.contains(e.target)) {
+            userMenu.classList.add('hidden');
+        }
+    });
+</script>
