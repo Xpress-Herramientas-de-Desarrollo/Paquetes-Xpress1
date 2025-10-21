@@ -4,85 +4,125 @@
 <main class="py-16 bg-gray-100">
   <div class="max-w-screen-lg mx-auto px-5">
 
-    <h1 class="text-3xl font-bold text-center mb-8 text-[#ff7947]">Panel de Seguimiento de Envíos</h1>
+    <h1 class="text-3xl font-bold text-center mb-8 text-[#ff7947]">
+      Panel de seguimiento de envíos
+      <?php if ($esAdmin): ?>ADMIN<?php endif; ?>
+    </h1>
     <p class="text-center text-gray-600 mb-10">
-      Consulta el estado de tus paquetes y revisa el historial de movimientos en tiempo real.
+      <?php if ($esAdmin): ?>
+        Gestión y monitoreo de todos los envíos registrados.
+      <?php else: ?>
+        Consulta el estado de tus paquetes y revisa el historial de movimientos.
+      <?php endif; ?>
     </p>
 
-    <!-- Mensaje de error -->
-    <?php if (session()->getFlashdata('error')): ?>
-      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6 text-center" role="alert">
-        <?= session()->getFlashdata('error') ?>
-      </div>
+    <?php if ($esAdmin): ?>
+      <section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+        <div class="bg-white shadow-md rounded-xl p-6 text-center">
+          <p class="text-gray-500 text-sm">Total Envíos</p>
+          <h2 class="text-2xl font-bold text-[#ff7947]"><?= esc($total ?? 0) ?></h2>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-6 text-center">
+          <p class="text-gray-500 text-sm">Solicitado</p>
+          <h2 class="text-2xl font-bold text-blue-500"><?= esc($Solicitado ?? 0) ?></h2>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-6 text-center">
+          <p class="text-gray-500 text-sm">Preparándose</p>
+          <h2 class="text-2xl font-bold text-blue-500"><?= esc($Preparándose ?? 0) ?></h2>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-6 text-center">
+          <p class="text-gray-500 text-sm">En agencia</p>
+          <h2 class="text-2xl font-bold text-blue-500"><?= esc($En_agencia ?? 0) ?></h2>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-6 text-center">
+          <p class="text-gray-500 text-sm">En camino</p>
+          <h2 class="text-2xl font-bold text-blue-500"><?= esc($En_camino ?? 0) ?></h2>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-6 text-center">
+          <p class="text-gray-500 text-sm">Entregado</p>
+          <h2 class="text-2xl font-bold text-green-500"><?= esc($Entregado ?? 0) ?></h2>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-6 text-center">
+          <p class="text-gray-500 text-sm">Cancelado</p>
+          <h2 class="text-2xl font-bold text-gray-500"><?= esc($Cancelado ?? 0) ?></h2>
+        </div>
+        <div class="bg-white shadow-md rounded-xl p-6 text-center">
+          <p class="text-gray-500 text-sm">Retrasado</p>
+          <h2 class="text-2xl font-bold text-red-500"><?= esc($Retrasado ?? 0) ?></h2>
+        </div>
+      </section>
     <?php endif; ?>
 
-    <!-- Formulario de búsqueda -->
-    <form action="<?= base_url('seguimiento/consultar') ?>" method="POST" class="bg-white p-8 rounded-lg shadow-md mb-10">
-      <h2 class="text-2xl font-semibold text-center text-[#ff7947] mb-6">Consultar Envío</h2>
-      <div class="mb-6">
-        <label for="codigo" class="block mb-2 font-semibold text-gray-700">Código de seguimiento:</label>
-        <input type="text" id="codigo" name="codigo" required
-          class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#ff7947]"
-          placeholder="Ejemplo: XP-123456">
-      </div>
-      <div class="text-center">
-        <button type="submit"
-          class="bg-[#ff7947] text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
-          Consultar
-        </button>
-      </div>
-    </form>
-
-    <!-- Resultado de búsqueda -->
-    <?php if (isset($pedido)): ?>
-      <section class="bg-white p-8 rounded-xl shadow-md mb-10">
-        <h2 class="text-2xl font-semibold text-center text-[#ff7947] mb-6">Resultado del Seguimiento</h2>
-
-        <div class="text-center mb-8">
-          <p class="text-gray-600">Código de Envío: <strong><?= esc($codigo) ?></strong></p>
-          <p class="text-gray-600">Estado actual: 
-            <strong class="<?php
-              if ($pedido['estado'] == 'Entregado') echo 'text-green-600';
-              elseif ($pedido['estado'] == 'En camino') echo 'text-blue-600';
-              else echo 'text-gray-600';
-            ?>">
-              <?= esc($pedido['estado']) ?>
-            </strong>
-          </p>
+    <?php if (!$esAdmin): ?>
+      <form action="<?= base_url('seguimiento/consultar') ?>" method="POST"
+        class="bg-white p-8 rounded-lg shadow-md mb-10">
+        <h2 class="text-2xl font-semibold text-center text-[#ff7947] mb-6">Consultar Envío</h2>
+        <div class="mb-6">
+          <label for="codigo" class="block mb-2 font-semibold text-gray-700">Código de seguimiento:</label>
+          <input type="text" id="codigo" name="codigo" required
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#ff7947]"
+            placeholder="Ejemplo: XP-123456" value="<?= isset($codigo) ? esc($codigo) : '' ?>">
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-700 mb-6">
-          <div>
-            <p><strong>Remitente:</strong> <?= esc($pedido['nombre_remitente']) ?></p>
-            <p><strong>Origen:</strong> <?= esc($pedido['ciudad_origen']) ?></p>
-            <p><strong>Dirección Origen:</strong> <?= esc($pedido['direccion_origen']) ?></p>
-            <p><strong>Fecha Pedido:</strong> <?= esc($pedido['fecha_pedido']) ?></p>
-          </div>
-          <div>
-            <p><strong>Destinatario:</strong> <?= esc($pedido['nombre_destinatario']) ?></p>
-            <p><strong>Destino:</strong> <?= esc($pedido['ciudad_destino']) ?></p>
-            <p><strong>Dirección Destino:</strong> <?= esc($pedido['direccion_destino']) ?></p>
-            <p><strong>Fecha Programada:</strong> <?= esc($pedido['fecha_programada']) ?></p>
-          </div>
+        <div class="text-center">
+          <button type="submit"
+            class="bg-[#ff7947] text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
+            Consultar
+          </button>
         </div>
+      </form>
 
-        <div class="mt-8">
-          <div class="flex justify-between text-sm text-gray-500 mb-2 font-medium">
-            <span>Registrado</span>
-            <span>En tránsito</span>
-            <span>En destino</span>
-            <span>Entregado</span>
-          </div>
-          <div class="relative w-full bg-gray-200 rounded-full h-3">
-            <?php
-              $porcentaje = 25; // progreso base
-              if ($pedido['estado'] == 'En camino') $porcentaje = 50;
-              elseif ($pedido['estado'] == 'En destino') $porcentaje = 75;
-              elseif ($pedido['estado'] == 'Entregado') $porcentaje = 100;
-            ?>
-            <div class="absolute top-0 left-0 bg-[#ff7947] h-3 rounded-full transition-all duration-700"
-              style="width: <?= $porcentaje ?>%;"></div>
-          </div>
+      <?php if (isset($pedido)): ?>
+        <section class="bg-white p-8 rounded-xl shadow-md mb-10">
+          <h2 class="text-2xl font-semibold text-center text-[#ff7947] mb-6">Detalles del Envío</h2>
+          <p class="text-center text-gray-700 mb-4"><strong>Código:</strong> <?= esc($pedido['codigo_tracking']) ?></p>
+          <p class="text-center text-gray-700 mb-4"><strong>Estado:</strong> <?= esc($pedido['estado']) ?></p>
+          <p class="text-center text-gray-700 mb-4"><strong>Origen:</strong> <?= esc($pedido['direccion_origen']) ?></p>
+          <p class="text-center text-gray-700 mb-4"><strong>Destino:</strong> <?= esc($pedido['direccion_destino']) ?></p>
+        </section>
+      <?php endif; ?>
+    <?php endif; ?>
+
+    <?php if ($esAdmin && isset($pedidos) && count($pedidos) > 0): ?>
+      <section class="bg-white p-6 rounded-xl shadow-md mb-10">
+        <h2 class="text-xl font-semibold text-[#ff7947] mb-4">Todos los Pedidos</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm text-left text-gray-600">
+            <thead class="bg-[#ff7947]/10 text-[#ff7947] font-semibold">
+              <tr>
+                <th class="py-3 px-4">Código</th>
+                <th class="py-3 px-4">Origen</th>
+                <th class="py-3 px-4">Destino</th>
+                <th class="py-3 px-4">Estado</th>
+                <th class="py-3 px-4">Fecha</th>
+                <th class="py-3 px-4">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($pedidos as $p): ?>
+                <tr class="border-t hover:bg-gray-50">
+                  <td class="py-3 px-4"><?= esc($p['codigo_tracking']) ?></td>
+                  <td class="py-3 px-4"><?= esc($p['direccion_origen']) ?></td>
+                  <td class="py-3 px-4"><?= esc($p['direccion_destino']) ?></td>
+                  <td class="py-3 px-4 font-semibold">
+                    <form class="estado-form" data-id="<?= $p['id_pedido'] ?>">
+                      <select name="estado" class="border rounded px-2 py-1 text-sm">
+                        <?php
+                        $estados = ['Solicitado', 'Preparándose', 'En agencia', 'En camino', 'Entregado', 'Cancelado', 'Retrasado'];
+                        foreach ($estados as $estado): ?>
+                          <option value="<?= $estado ?>" <?= $estado == $p['estado'] ? 'selected' : '' ?>><?= $estado ?></option>
+                        <?php endforeach; ?>
+                      </select>
+                      <button type="submit"
+                        class="ml-2 bg-[#ff7947] text-white px-3 py-1 rounded hover:bg-orange-600 transition text-sm">Actualizar</button>
+                    </form>
+                  </td>
+                  <td class="py-3 px-4"><?= esc(date('d/m/Y', strtotime($p['fecha_pedido']))) ?></td>
+                  <td class="py-3 px-4">
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
         </div>
       </section>
     <?php endif; ?>
@@ -91,3 +131,33 @@
 </main>
 
 <?= $this->include('layouts/footer') ?>
+
+<script>
+  document.querySelectorAll('.estado-form').forEach(form => {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const id = this.dataset.id;
+      const estado = this.querySelector('select[name="estado"]').value;
+
+      fetch(`<?= base_url('seguimiento/cambiarEstado') ?>/${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `estado=${estado}`
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Estado actualizado',
+              showConfirmButton: false,
+              timer: 1200
+            });
+            setTimeout(() => location.reload(), 1300);
+          } else {
+            Swal.fire('Error', data.message, 'error');
+          }
+        });
+    });
+  });
+</script>

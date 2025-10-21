@@ -32,5 +32,7 @@ $routes->post('tarifa/precio', 'Tarifa::precio');
 
 $routes->get('seguimiento', 'Seguimiento::index');
 $routes->post('seguimiento/consultar', 'Seguimiento::consultar');
+$routes->post('seguimiento/cambiarEstado/(:num)', 'Seguimiento::cambiarEstado/$1');
+
 
 $routes->get('contacto', 'Contacto::index');
