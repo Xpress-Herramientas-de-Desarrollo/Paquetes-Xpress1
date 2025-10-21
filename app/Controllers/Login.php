@@ -53,7 +53,7 @@ class Login extends BaseController
         $session->set($sessionData);
 
         return match ($usuario['tipo']) {
-            'admin' => redirect()->to('/admin/panel'),
+            'admin' => redirect()->to('/seguimiento'),
             'repartidor' => redirect()->to('/repartidor/panel'),
             'cliente' => redirect()->to('/'),
             default => redirect()->to('/login'),

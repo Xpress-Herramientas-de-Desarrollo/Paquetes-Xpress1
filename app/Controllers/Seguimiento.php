@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
-use App\Models\PedidoModel;
+
+use App\Models\SeguimientoModel;
 
 class Seguimiento extends BaseController
 {
@@ -13,10 +14,14 @@ class Seguimiento extends BaseController
     {
         $codigo = $this->request->getPost('codigo');
 
-        $id_pedido = intval(substr($codigo, 2));
+        // Validamos que el usuario haya ingresado algo
+        if (empty($codigo)) {
+            session()->setFlashdata('error', 'Por favor, ingresa un código o ID de envío.');
+            return redirect()->to('/seguimiento');
+        }
 
-        $pedidoModel = new PedidoModel();
-        $pedido = $pedidoModel->where('id_pedido', $id_pedido)->first();
+        $seguimientoModel = new SeguimientoModel();
+        $pedido = $seguimientoModel->obtenerEnvioPorCodigo($codigo); // Cambié a "por código"
 
         if ($pedido) {
             return view('seguimiento', ['pedido' => $pedido, 'codigo' => $codigo]);

@@ -19,7 +19,7 @@ class Registro extends BaseController
         // Obtener y limpiar datos
         $nombre = trim($request->getPost('nombre'));
         $apellido = trim($request->getPost('apellido'));
-        $dni = trim($request->getPost('dni')); // <-- DNI obligatorio
+        $dni = trim($request->getPost('dni')); 
         $correo = trim($request->getPost('correo'));
         $telefono = trim($request->getPost('telefono'));
         $direccion = trim($request->getPost('direccion'));

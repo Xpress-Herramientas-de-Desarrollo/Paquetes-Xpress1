@@ -33,19 +33,36 @@ Events::on('pre_system', static function (): void {
             ob_end_flush();
         }
 
-        ob_start(static fn ($buffer) => $buffer);
+        ob_start(static fn($buffer) => $buffer);
+    }
+
+    // ------------------------------------------------------
+    // CREAR ADMIN AUTOMÁTICAMENTE SI NO EXISTE
+    // ------------------------------------------------------
+    $db = \Config\Database::connect();
+    $builder = $db->table('usuarios');
+
+    $adminExist = $builder->where('tipo', 'admin')->get()->getRow();
+
+    if (!$adminExist) {
+        $builder->insert([
+            'username' => 'admin',
+            'password' => password_hash('admin123', PASSWORD_DEFAULT),
+            'tipo' => 'admin',
+            'id_cliente' => NULL,
+            'fecha_registro' => date('Y-m-d H:i:s')
+        ]);
+        log_message('info', 'Administrador creado automáticamente.');
     }
 
     /*
      * --------------------------------------------------------------------
      * Debug Toolbar Listeners.
      * --------------------------------------------------------------------
-     * If you delete, they will no longer be collected.
      */
-    if (CI_DEBUG && ! is_cli()) {
+    if (CI_DEBUG && !is_cli()) {
         Events::on('DBQuery', 'CodeIgniter\Debug\Toolbar\Collectors\Database::collect');
         service('toolbar')->respond();
-        // Hot Reload route - for framework use on the hot reloader.
         if (ENVIRONMENT === 'development') {
             service('routes')->get('__hot-reload', static function (): void {
                 (new HotReloader())->run();
