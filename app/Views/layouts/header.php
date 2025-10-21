@@ -1,7 +1,8 @@
 <header
-    class="h-[113px] flex flex-row items-center pt-10 pb-5 px-5 max-w-screen-xl m-auto max-md:justify-between max-md:min-h-[50px] max-md:p-4 relative">
+    class="h-[113px] flex items-center justify-between px-10 max-w-screen-xl m-auto relative max-md:p-4">
 
-    <div class="flex-1">
+    <!-- LOGO más a la izquierda -->
+    <div class="flex items-center flex-none">
         <a href="<?= base_url('/') ?>" class="flex items-center gap-3">
             <img src="<?= base_url('assets/img/logo.png') ?>" alt="Logo" class="h-12 object-contain" />
             <span class="text-3xl font-bold text-[#ff7947]" style="font-family: 'Bungee Inline', cursive">
@@ -10,8 +11,9 @@
         </a>
     </div>
 
+    <!-- NAV centrado -->
     <nav id="navMenu"
-        class="flex flex-1 justify-around text-center text-sm font-medium max-md:hidden transition-all duration-300">
+        class="flex flex-nowrap justify-center flex-1 space-x-8 text-center text-sm font-medium max-md:hidden transition-all duration-300">
         <a href="<?= base_url('/') ?>" class="flex flex-col items-center hover:text-orange-500 transition group">
             <i class="bi bi-house-door text-xl group-hover:text-orange-500"></i>
             <span>Inicio</span>
@@ -20,12 +22,11 @@
             <i class="bi bi-currency-dollar text-xl group-hover:text-orange-500"></i>
             <span>Cotizar</span>
         </a>
-        <a href="<?= base_url('envio') ?>" class="flex flex-col items-center hover:text-orange-500 transition group">
+        <a href="<?= base_url('envio') ?>" class="flex flex-col items-center hover:text-orange-500 transition group whitespace-nowrap">
             <i class="bi bi-box-seam text-xl group-hover:text-orange-500"></i>
             <span>Envía tu paquete</span>
-
-        <a href="<?= base_url('seguimiento') ?>"
-            class="flex flex-col items-center hover:text-orange-500 transition group">
+        </a>
+        <a href="<?= base_url('seguimiento') ?>" class="flex flex-col items-center hover:text-orange-500 transition group">
             <i class="bi bi-search text-xl group-hover:text-orange-500"></i>
             <span>Seguimiento</span>
         </a>
@@ -35,27 +36,29 @@
         </a>
     </nav>
 
-    <div class="flex flex-1 justify-end items-center gap-4 max-md:gap-3">
+    <!-- ICONO DE USUARIO más a la derecha -->
+    <div class="flex items-center flex-none gap-4">
         <?php if (session()->get('id_usuario')): ?>
-            <!-- Usuario con menú desplegable -->
+            <!-- Contenedor del usuario con menú centrado -->
             <div class="relative">
-                <div id="userButton" class="flex flex-col items-center cursor-pointer group">
-                    <i class="bi bi-person text-2xl group-hover:text-orange-500 transition"></i>
-                    <span class="text-sm text-gray-700 mt-1 group-hover:text-orange-500 transition">
+                <!-- Botón de usuario -->
+                <div id="userButton" class="flex flex-col items-center cursor-pointer">
+                    <i class="bi bi-person text-2xl hover:text-orange-500 transition"></i>
+                    <span class="text-sm text-gray-700 mt-1 hover:text-orange-500 transition">
                         Hola, <?= esc(session()->get('nombre')) ?>
                     </span>
                 </div>
 
+                <!-- Menú centrado debajo -->
                 <div id="userMenu"
-                    class="hidden absolute left-1/2 -translate-x-1/2 mt-2 w-44 bg-white shadow-lg rounded-lg border border-gray-200 z-50">
+                    class="hidden absolute left-1/2 transform -translate-x-1/2 mt-3 w-44 bg-white shadow-lg rounded-lg border border-gray-200 z-50 text-center">
                     <div
                         class="absolute -top-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-white transform rotate-45 border-t border-l border-gray-200">
                     </div>
-
-                    <form action="<?= base_url('logout') ?>" method="POST">
+                    <form action="<?= base_url('logout') ?>" method="POST" class="flex justify-center">
                         <button type="submit"
-                            class="w-full text-left px-4 py-2 text-gray-700 hover:bg-orange-500 hover:text-white rounded-lg transition">
-                            Cerrar Sesión
+                            class="px-4 py-2 text-gray-700 hover:bg-orange-500 hover:text-white rounded-lg transition w-full text-center">
+                            Cerrar sesión
                         </button>
                     </form>
                 </div>
@@ -67,12 +70,14 @@
             </a>
         <?php endif; ?>
 
+        <!-- Botón menú móvil -->
         <button id="menuToggle" class="md:hidden text-3xl focus:outline-none">
             <i class="bi bi-list"></i>
         </button>
     </div>
 </header>
 
+<!-- Menú móvil -->
 <div id="mobileMenu" class="hidden bg-gray-900 text-white p-5 space-y-4 md:hidden">
     <a href="<?= base_url('/') ?>" class="block hover:text-[#ff7947] transition">Inicio</a>
     <a href="<?= base_url('cotizar') ?>" class="block hover:text-[#ff7947] transition">Cotizar</a>
@@ -89,6 +94,7 @@
     <?php endif; ?>
 </div>
 
+<!-- Script: clic para abrir/cerrar menú -->
 <script>
     const userButton = document.getElementById('userButton');
     const userMenu = document.getElementById('userMenu');
