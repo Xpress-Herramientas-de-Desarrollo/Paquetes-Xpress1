@@ -1,7 +1,8 @@
 <?php
-
 namespace App\Controllers;
+
 use App\Models\UsuarioModel;
+use App\Models\ClienteModel;
 
 class Login extends BaseController
 {
@@ -14,59 +15,49 @@ class Login extends BaseController
     {
         $session = session();
 
-        try {
-            $usuarioInput = trim($this->request->getPost('usuario'));
-            $contrasenaInput = trim($this->request->getPost('contrasena'));
+        $usuarioInput = trim($this->request->getPost('usuario'));
+        $contrasenaInput = trim($this->request->getPost('contrasena'));
 
-            if (empty($usuarioInput) || empty($contrasenaInput)) {
-                $session->setFlashdata('error', 'Usuario y contraseña son obligatorios.');
-                return redirect()->to('/login');
-            }
-
-            $usuarioModel = new UsuarioModel();
-            $usuario = $usuarioModel->where('username', $usuarioInput)->first();
-
-            if (!$usuario) {
-                $session->setFlashdata('error', 'Usuario o contraseña incorrectos.');
-                return redirect()->to('/login');
-            }
-
-            if (!password_verify($contrasenaInput, $usuario['password'])) {
-                $session->setFlashdata('error', 'Usuario o contraseña incorrectos.');
-                return redirect()->to('/login');
-            }
-
-            // Guardar sesión
-            $session->set([
-                'id_usuario' => $usuario['id_usuario'],
-                'username' => $usuario['username'],
-                'tipo' => $usuario['tipo']
-            ]);
-
-            if ($usuario['tipo'] === 'cliente' && !empty($usuario['id_cliente'])) {
-                $db = \Config\Database::connect();
-                $cliente = $db->table('clientes')
-                              ->select('nombre, apellido')
-                              ->where('id_cliente', $usuario['id_cliente'])
-                              ->get()
-                              ->getRowArray();
-
-                $session->set([
-                    'nombre' => $cliente['nombre'] ?? '',
-                    'apellido' => $cliente['apellido'] ?? ''
-                ]);
-            } else {
-                $session->set([
-                    'nombre' => 'Administrador',
-                    'apellido' => ''
-                ]);
-            }
-
-            return redirect()->to('/login'); 
-        } catch (\Exception $e) {
-            $session->setFlashdata('error', 'Ocurrió un error al iniciar sesión: ' . $e->getMessage());
+        if (empty($usuarioInput) || empty($contrasenaInput)) {
+            $session->setFlashdata('error', 'Usuario y contraseña son obligatorios.');
             return redirect()->to('/login');
         }
+
+        $usuarioModel = new UsuarioModel();
+        $clienteModel = new ClienteModel();
+
+        $usuario = $usuarioModel->autenticar($usuarioInput, $contrasenaInput);
+
+        if (!$usuario) {
+            $session->setFlashdata('error', 'Usuario o contraseña incorrectos.');
+            return redirect()->to('/login');
+        }
+
+        $sessionData = [
+            'id_usuario' => $usuario['id_usuario'],
+            'username' => $usuario['username'],
+            'tipo' => $usuario['tipo'],
+            'logged_in' => true
+        ];
+
+        if ($usuario['tipo'] === 'cliente' && !empty($usuario['id_cliente'])) {
+            $cliente = $clienteModel->find($usuario['id_cliente']);
+            $sessionData['nombre'] = $cliente['nombre'] ?? '';
+            $sessionData['apellido'] = $cliente['apellido'] ?? '';
+            $sessionData['id_cliente'] = $usuario['id_cliente'];
+        } else {
+            $sessionData['nombre'] = $usuario['tipo'] === 'admin' ? 'Administrador' : 'Repartidor';
+            $sessionData['apellido'] = '';
+        }
+
+        $session->set($sessionData);
+
+        return match ($usuario['tipo']) {
+            'admin' => redirect()->to('/admin/panel'),
+            'repartidor' => redirect()->to('/repartidor/panel'),
+            'cliente' => redirect()->to('/'),
+            default => redirect()->to('/login'),
+        };
     }
 
     public function logout()

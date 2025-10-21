@@ -1,5 +1,6 @@
 <?= $this->include('layouts/head') ?>
 <?= $this->include('layouts/header') ?>
+
 <main class="py-16 bg-gray-100">
     <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
         <h1 class="text-3xl font-bold text-center text-[#ff7947] mb-6">Iniciar Sesión</h1>
@@ -21,9 +22,9 @@
             </div>
 
         <?php else: ?>
-            <?php if (session()->getFlashdata('error')): ?>
+            <?php if ($error = session()->getFlashdata('error')): ?>
                 <div class="bg-red-100 border border-red-400 text-red-700 px-6 py-4 rounded relative mb-4">
-                    <strong class="font-bold">Error:</strong> <?= session()->getFlashdata('error') ?>
+                    <strong class="font-bold">Error:</strong> <?= esc($error) ?>
                 </div>
             <?php endif; ?>
 
@@ -55,6 +56,5 @@
         <?php endif; ?>
     </div>
 </main>
-
 
 <?= $this->include('layouts/footer') ?>

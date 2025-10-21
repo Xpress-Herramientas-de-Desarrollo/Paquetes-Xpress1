@@ -22,11 +22,13 @@ $routes->get('cotizar', 'Cotizar::index');
 $routes->post('cotizar/calcular', 'Cotizar::calcular');
 
 $routes->get('envio', 'Envio::index');
+$routes->post('envio/guardar', 'Envio::guardar');
 
 $routes->get('enviopuerta', 'Enviopuerta::index');
 
 $routes->get('enviolocal', 'Enviolocal::index');
 
+$routes->post('tarifa/precio', 'Tarifa::precio');
 
 $routes->get('seguimiento', 'Seguimiento::index');
 $routes->post('seguimiento/consultar', 'Seguimiento::consultar');

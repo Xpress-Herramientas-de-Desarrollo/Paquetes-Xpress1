@@ -1,5 +1,25 @@
+# Logs y sesiones
 writable/logs/
 writable/session/
 
+# Archivos temporales
 *.log
 *.tmp
+
+# Composer
+/vendor/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+
+# Cache de CodeIgniter
+writable/cache/
+
+# Otros
+.env

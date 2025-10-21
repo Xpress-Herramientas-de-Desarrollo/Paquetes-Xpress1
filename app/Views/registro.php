@@ -1,5 +1,6 @@
 <?= $this->include('layouts/head') ?>
 <?= $this->include('layouts/header') ?>
+
 <?php 
 $session = session();
 $alerta = $session->getFlashdata('alerta') ?? null;
@@ -7,7 +8,11 @@ if($alerta):
 ?>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    mostrarAlertaRegistro('<?= $alerta['tipo'] ?>', '<?= $alerta['mensaje'] ?>'<?= isset($alerta['redirect']) ? ",'{$alerta['redirect']}'" : "" ?>);
+    mostrarAlertaRegistro(
+        '<?= esc($alerta['tipo']) ?>', 
+        '<?= esc($alerta['mensaje']) ?>'
+        <?= isset($alerta['redirect']) ? ", '" . esc($alerta['redirect']) . "'" : "" ?>
+    );
 });
 </script>
 <?php endif; ?>
@@ -15,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <main class="py-16 bg-gray-100">
     <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
         <h1 class="text-3xl font-bold text-center text-[#ff7947] mb-6">Regístrate</h1>
-        <form action="<?= base_url('registro/crear') ?>" method="POST" class="space-y-6">
+        <form action="<?= trim(base_url('registro/crear')) ?>" method="POST" class="space-y-6">
             <div>
                 <label for="nombre" class="block mb-2 font-semibold text-gray-700">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required
@@ -29,6 +34,12 @@ document.addEventListener('DOMContentLoaded', function() {
                        placeholder="Ingresa tu apellido">
             </div>
             <div>
+                <label for="dni" class="block mb-2 font-semibold text-gray-700">DNI:</label>
+                <input type="text" id="dni" name="dni" required
+                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#ff7947]"
+                       placeholder="Ingresa tu DNI">
+            </div>
+            <div>
                 <label for="correo" class="block mb-2 font-semibold text-gray-700">Correo:</label>
                 <input type="email" id="correo" name="correo" required
                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#ff7947]"
@@ -36,15 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <div>
                 <label for="telefono" class="block mb-2 font-semibold text-gray-700">Teléfono:</label>
-                <input type="text" id="telefono" name="telefono" required
+                <input type="text" id="telefono" name="telefono"
                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#ff7947]"
                        placeholder="987654321">
-            </div>
-            <div>
-                <label for="direccion" class="block mb-2 font-semibold text-gray-700">Dirección:</label>
-                <input type="text" id="direccion" name="direccion" required
-                       class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#ff7947]"
-                       placeholder="Av. Ejemplo 123">
             </div>
             <div>
                 <label for="usuario" class="block mb-2 font-semibold text-gray-700">Usuario:</label>

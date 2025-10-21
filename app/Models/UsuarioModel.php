@@ -5,37 +5,35 @@ use CodeIgniter\Model;
 
 class UsuarioModel extends Model
 {
-    protected $table      = 'usuarios';
+    protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';
-
     protected $allowedFields = [
         'username',
         'password',
         'tipo',
-        'id_cliente'
+        'id_cliente',
+        'fecha_registro'
     ];
+
+    protected $useTimestamps = true;
+    protected $createdField = 'fecha_registro';
+    protected $updatedField = '';
 
     protected $returnType = 'array';
-    protected $useTimestamps = false;
 
-    protected $createdField  = 'fecha_registro';
+    public function existeUsuario(string $username): bool
+    {
+        return $this->where('username', $username)->first() !== null;
+    }
 
-    protected $validationRules = [
-        'username' => 'required|min_length[3]|max_length[50]|is_unique[usuarios.username]',
-        'password' => 'required|min_length[6]'
-    ];
+    public function autenticar(string $username, string $password): ?array
+    {
+        $usuario = $this->where('username', $username)->first();
 
-    protected $validationMessages = [
-        'username' => [
-            'required' => 'El nombre de usuario es obligatorio.',
-            'min_length' => 'El nombre de usuario debe tener al menos 3 caracteres.',
-            'is_unique' => 'Este nombre de usuario ya está en uso.'
-        ],
-        'password' => [
-            'required' => 'La contraseña es obligatoria.',
-            'min_length' => 'La contraseña debe tener al menos 6 caracteres.'
-        ]
-    ];
+        if ($usuario && password_verify($password, $usuario['password'])) {
+            return $usuario;
+        }
 
-    protected $skipValidation = false;
+        return null;
+    }
 }
