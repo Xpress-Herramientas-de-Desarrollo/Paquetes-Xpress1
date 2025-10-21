@@ -16,44 +16,70 @@ class Registro extends BaseController
         $request = \Config\Services::request();
         $session = session();
 
+        // Obtener y limpiar datos
         $nombre = trim($request->getPost('nombre'));
         $apellido = trim($request->getPost('apellido'));
-        $dni = trim($request->getPost('dni'));
+        $dni = trim($request->getPost('dni')); // <-- DNI obligatorio
         $correo = trim($request->getPost('correo'));
         $telefono = trim($request->getPost('telefono'));
+        $direccion = trim($request->getPost('direccion'));
         $usuario = trim($request->getPost('usuario'));
         $contrasena = trim($request->getPost('contrasena'));
 
-        $usuarioModel = new UsuarioModel();
-        $clienteModel = new ClienteModel();
+        // Validar campos obligatorios
+        if (empty($dni)) {
+            $session->setFlashdata('alerta', [
+                'tipo' => 'error',
+                'mensaje' => 'El DNI es obligatorio.'
+            ]);
+            return redirect()->to('/registro');
+        }
 
+        // Modelos
+        $usuarioModel = new \App\Models\UsuarioModel();
+        $clienteModel = new \App\Models\ClienteModel();
+
+        // Validar duplicados
         if ($usuarioModel->where('username', $usuario)->first()) {
-            $session->setFlashdata('alerta', ['tipo' => 'error', 'mensaje' => 'El usuario ya existe.']);
+            $session->setFlashdata('alerta', [
+                'tipo' => 'error',
+                'mensaje' => 'El usuario ya existe, intenta con otro.'
+            ]);
             return redirect()->to('/registro');
         }
 
         if ($clienteModel->where('email', $correo)->first()) {
-            $session->setFlashdata('alerta', ['tipo' => 'error', 'mensaje' => 'El correo ya está registrado.']);
+            $session->setFlashdata('alerta', [
+                'tipo' => 'error',
+                'mensaje' => 'El correo ya está registrado.'
+            ]);
             return redirect()->to('/registro');
         }
 
         if ($clienteModel->where('dni', $dni)->first()) {
-            $session->setFlashdata('alerta', ['tipo' => 'error', 'mensaje' => 'El DNI ya está registrado.']);
+            $session->setFlashdata('alerta', [
+                'tipo' => 'error',
+                'mensaje' => 'El DNI ya está registrado.'
+            ]);
             return redirect()->to('/registro');
         }
 
+        // Insertar cliente
         try {
             $id_cliente = $clienteModel->insert([
                 'nombre' => $nombre,
                 'apellido' => $apellido,
                 'dni' => $dni,
                 'email' => $correo,
-                'telefono' => $telefono
+                'telefono' => $telefono,
+                'direccion' => $direccion
             ], true);
 
-            if (!$id_cliente)
+            if (!$id_cliente) {
                 throw new \Exception("No se pudo crear el cliente.");
+            }
 
+            // Insertar usuario vinculado al cliente
             $id_usuario = $usuarioModel->insert([
                 'username' => $usuario,
                 'password' => password_hash($contrasena, PASSWORD_DEFAULT),
@@ -61,8 +87,9 @@ class Registro extends BaseController
                 'id_cliente' => $id_cliente
             ]);
 
-            if (!$id_usuario)
+            if (!$id_usuario) {
                 throw new \Exception("No se pudo crear el usuario.");
+            }
 
             $session->setFlashdata('alerta', [
                 'tipo' => 'success',
@@ -70,10 +97,13 @@ class Registro extends BaseController
                 'redirect' => base_url('login')
             ]);
 
-            return redirect()->to('/registro');
+            return redirect()->to(base_url('login'));
 
         } catch (\Exception $e) {
-            $session->setFlashdata('alerta', ['tipo' => 'error', 'mensaje' => 'Error: ' . $e->getMessage()]);
+            $session->setFlashdata('alerta', [
+                'tipo' => 'error',
+                'mensaje' => 'Ocurrió un error al registrar: ' . $e->getMessage()
+            ]);
             return redirect()->to('/registro');
         }
     }

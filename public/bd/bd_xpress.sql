@@ -2,7 +2,7 @@
 CREATE DATABASE IF NOT EXISTS bd_xpress CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE bd_xpress;
 
---------------------------------------------------------
+
 --
 -- Estructura de tabla para la tabla `agencias`
 --
@@ -29,7 +29,7 @@ CREATE TABLE `clientes` (
   `apellido` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
-  `dni` varchar(20) DEFAULT NULL,
+  `dni` varchar(20) NOT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
