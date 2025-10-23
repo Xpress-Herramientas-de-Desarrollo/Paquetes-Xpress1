@@ -54,33 +54,70 @@
     <?php endif; ?>
 
     <?php if (!$esAdmin): ?>
-      <form action="<?= base_url('seguimiento/consultar') ?>" method="POST"
-        class="bg-white p-8 rounded-lg shadow-md mb-10">
-        <h2 class="text-2xl font-semibold text-center text-[#ff7947] mb-6">Consultar Envío</h2>
-        <div class="mb-6">
-          <label for="codigo" class="block mb-2 font-semibold text-gray-700">Código de seguimiento:</label>
-          <input type="text" id="codigo" name="codigo" required
-            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#ff7947]"
-            placeholder="Ejemplo: XP-123456" value="<?= isset($codigo) ? esc($codigo) : '' ?>">
-        </div>
-        <div class="text-center">
-          <button type="submit"
-            class="bg-[#ff7947] text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-600 transition">
-            Consultar
-          </button>
-        </div>
-      </form>
+  <!-- Formulario de Consulta -->
+  <form action="<?= base_url('seguimiento/consultar') ?>" method="POST"
+    class="bg-white p-8 rounded-xl shadow-lg mb-10 max-w-xl mx-auto border border-gray-200">
+    <h2 class="text-3xl font-bold text-center text-[#ff7947] mb-6">Consultar Envío</h2>
+    <div class="mb-6">
+      <label for="codigo" class="block mb-2 font-medium text-gray-700">Código de seguimiento:</label>
+      <input type="text" id="codigo" name="codigo" required
+        class="w-full border border-gray-300 rounded-lg px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#ff7947] focus:border-[#ff7947] transition"
+        placeholder="Ejemplo: XP-123456" value="<?= isset($codigo) ? esc($codigo) : '' ?>">
+    </div>
+    <div class="text-center">
+      <button type="submit"
+        class="bg-[#ff7947] hover:bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold shadow transition">
+        Consultar
+      </button>
+    </div>
+  </form>
 
-      <?php if (isset($pedido)): ?>
-        <section class="bg-white p-8 rounded-xl shadow-md mb-10">
-          <h2 class="text-2xl font-semibold text-center text-[#ff7947] mb-6">Detalles del Envío</h2>
-          <p class="text-center text-gray-700 mb-4"><strong>Código:</strong> <?= esc($pedido['codigo_tracking']) ?></p>
-          <p class="text-center text-gray-700 mb-4"><strong>Estado:</strong> <?= esc($pedido['estado']) ?></p>
-          <p class="text-center text-gray-700 mb-4"><strong>Origen:</strong> <?= esc($pedido['direccion_origen']) ?></p>
-          <p class="text-center text-gray-700 mb-4"><strong>Destino:</strong> <?= esc($pedido['direccion_destino']) ?></p>
-        </section>
-      <?php endif; ?>
-    <?php endif; ?>
+  <!-- Detalles del Pedido -->
+  <?php if (isset($pedido)): ?>
+    <section class="bg-white p-8 rounded-xl shadow-lg max-w-2xl mx-auto border border-gray-200">
+      <h2 class="text-3xl font-bold text-center text-[#ff7947] mb-6">Detalles del Envío</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-gray-700">
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-[#ff7947]" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 10h2l.4 2M7 13h10l1-5H6.4M7 13l-1 5h12l1-5M7 13l-1-5m0 0L4 6H2"></path>
+          </svg>
+          <p><span class="font-semibold">Código:</span> <?= esc($pedido['codigo_tracking']) ?></p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2l4-4m1 4v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h6"></path>
+          </svg>
+          <p><span class="font-semibold">Estado:</span> <?= esc($pedido['estado']) ?></p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5v-2a4 4 0 0 0-3-3.87M9 4h6m2 0a2 2 0 0 1 2 2v6m0 0H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+          </svg>
+          <p><span class="font-semibold">Origen:</span> <?= esc($pedido['direccion_origen']) ?></p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 11c0 1.657-1.343 3-3 3S6 12.657 6 11s1.343-3 3-3s3 1.343 3 3zm0 0c0 1.657 1.343 3 3 3s3-1.343 3-3s-1.343-3-3-3s-3 1.343-3 3z"></path>
+          </svg>
+          <p><span class="font-semibold">Destino:</span> <?= esc($pedido['direccion_destino']) ?></p>
+        </div>
+      </div>
+    </section>
+  <?php endif; ?>
+<?php endif; ?>
+
 
     <?php if ($esAdmin && isset($pedidos) && count($pedidos) > 0): ?>
       <section class="bg-white p-6 rounded-xl shadow-md mb-10">
