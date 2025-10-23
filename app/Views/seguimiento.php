@@ -116,7 +116,7 @@
       </div>
     </section>
   <?php endif; ?>
-<?php endif; ?>
+<?php endif; ?> 
 
 
     <?php if ($esAdmin && isset($pedidos) && count($pedidos) > 0): ?>
