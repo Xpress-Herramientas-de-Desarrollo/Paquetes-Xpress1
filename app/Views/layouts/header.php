@@ -165,7 +165,7 @@
                 userMenu.classList.add('hidden');
             }
         });
-    }
+    } 
 
     // Menú móvil hamburguesa
     const menuToggle = document.getElementById('menuToggle');
