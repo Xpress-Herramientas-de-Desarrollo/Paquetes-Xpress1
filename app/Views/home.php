@@ -173,19 +173,19 @@
 
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-gray-700">
       <div class="p-6 bg-orange-100 rounded-lg shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold mb-2 text-orange-600">Empresa Embutidos</h3>
+        <h3 class="text-xl font-semibold mb-2 text-orange-600">Empresa Melamine</h3>
         <p class="text-sm text-orange-500">Cliente corporativo desde 2020</p>
       </div>
       <div class="p-6 bg-orange-100 rounded-lg shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold mb-2 text-orange-600">Empresa Pastelería Kekitos</h3>
-        <p class="text-sm text-orange-500">Envíos superior a 200 mensuales</p>
+        <h3 class="text-xl font-semibold mb-2 text-orange-600">Empresa Impacto electronics</h3>
+        <p class="text-sm text-orange-500">Envíos superior a 20000 mensuales</p>
       </div>
       <div class="p-6 bg-orange-100 rounded-lg shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold mb-2 text-orange-600">Empresa Helados</h3>
+        <h3 class="text-xl font-semibold mb-2 text-orange-600">Empresa Equipos de montaña</h3>
         <p class="text-sm text-orange-500">Envíos a nivel nacional</p>
       </div>
       <div class="p-6 bg-orange-100 rounded-lg shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold mb-2 text-orange-600">Empresa Vestidos</h3>
+        <h3 class="text-xl font-semibold mb-2 text-orange-600">Empresa Trajes elegantes</h3>
         <p class="text-sm text-orange-500">Más de 100 paquetes entregados</p>
       </div>
     </div>
