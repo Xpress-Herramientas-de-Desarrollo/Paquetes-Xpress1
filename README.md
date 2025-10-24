@@ -1,3 +1,19 @@
+# Información general
+
+## Objetivos 
+
+Nuestro objetivo es crear una página dedicada al servicio de paquetería con envíos a todo el perú, garantizando su seguridad y eficacia.
+
+## Integrantes
+
+Berrocal Calderon Jorck Calito 
+Castillo Tenorio Andrea Melisa
+Tocre Paucar Joseph Alberto 
+
+
+
+
+
 # CodeIgniter 4 Framework
 
 ## What is CodeIgniter?
