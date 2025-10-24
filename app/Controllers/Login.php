@@ -55,7 +55,7 @@ class Login extends BaseController
         return match ($usuario['tipo']) {
             'admin' => redirect()->to('/seguimiento'),
             'repartidor' => redirect()->to('/repartidor/panel'),
-            'cliente' => redirect()->to('/'),
+            'cliente' => ,
             default => redirect()->to('/login'),
         };
     }
