@@ -23,8 +23,8 @@
             <div class="overflow-hidden relative rounded-lg shadow-lg">
                 <div class="slider flex transition-transform duration-500">
                     <img src="https://images.pexels.com/photos/6169641/pexels-photo-6169641.jpeg" class="w-full flex-shrink-0" alt="Envío 1">
-                    <img src="https://images.pexels.com/photos/6407446/pexels-photo-6407446.jpeg" class="w-full flex-shrink-0" alt="Envío 2">
-                    <img src="https://images.pexels.com/photos/4440774/pexels-photo-4440774.jpeg" class="w-full flex-shrink-0" alt="Envío 3">
+                    <img src="https://images.pexels.com/photos/7843960/pexels-photo-7843960.jpeg" class="w-full flex-shrink-0" alt="Envío 2">
+                    <img src="https://images.pexels.com/photos/7843991/pexels-photo-7843991.jpeg" class="w-full flex-shrink-0" alt="Envío 3">
                 </div>
                 <button id="prev" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white text-red-500 rounded-full p-2 shadow hover:bg-gray-100">&lt;</button>
                 <button id="next" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white text-red-500 rounded-full p-2 shadow hover:bg-gray-100">&gt;</button>
