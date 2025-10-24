@@ -114,6 +114,118 @@
           <p><span class="font-semibold">Destino:</span> <?= esc($pedido['direccion_destino']) ?></p>
         </div>
       </div>
+
+      <!-- Steps de seguimiento -->
+      <div class="mt-8">
+        <h3 class="text-xl font-semibold text-gray-800 mb-6 text-center">Progreso del Envío</h3>
+        
+        <?php
+        // Definir los pasos en orden
+        $pasos = ['Solicitado', 'Preparándose', 'En agencia', 'En camino', 'Entregado', 'Cancelado'];
+        $estadoActual = $pedido['estado'];
+        $indiceActual = array_search($estadoActual, $pasos);
+        ?>
+        
+        <div class="relative">
+          <!-- Línea de progreso -->
+          <div class="absolute top-6 left-0 right-0 h-0.5 bg-gray-200"></div>
+          <div class="absolute top-6 left-0 h-0.5 bg-orange-500 transition-all duration-500" 
+               style="width: <?= $indiceActual !== false ? (($indiceActual + 1) / count($pasos)) * 100 : 0 ?>%"></div>
+          
+          <!-- Steps -->
+          <div class="flex justify-between items-start">
+            <?php foreach ($pasos as $index => $paso): ?>
+              <?php
+              $esCompletado = $index <= $indiceActual;
+              $esActual = $paso === $estadoActual;
+              $esCancelado = $estadoActual === 'Cancelado' && $paso === 'Cancelado';
+              
+              $claseIcono = $esCompletado ? 'bg-orange-500 text-white' : 'bg-gray-200 text-gray-400';
+              $claseTexto = $esCompletado ? 'text-gray-800 font-semibold' : 'text-gray-400';
+              
+              if ($esCancelado) {
+                $claseIcono = 'bg-red-500 text-white';
+                $claseTexto = 'text-red-600 font-semibold';
+              }
+              ?>
+              
+              <div class="flex flex-col items-center relative z-10">
+                <!-- Icono del paso -->
+                <div class="w-12 h-12 rounded-full flex items-center justify-center <?= $claseIcono ?> transition-all duration-300 shadow-lg">
+                  <?php if ($paso === 'Solicitado'): ?>
+                    <i class="bi bi-clipboard-check text-lg"></i>
+                  <?php elseif ($paso === 'Preparándose'): ?>
+                    <i class="bi bi-gear text-lg"></i>
+                  <?php elseif ($paso === 'En agencia'): ?>
+                    <i class="bi bi-building text-lg"></i>
+                  <?php elseif ($paso === 'En camino'): ?>
+                    <i class="bi bi-truck text-lg"></i>
+                  <?php elseif ($paso === 'Entregado'): ?>
+                    <i class="bi bi-check-circle text-lg"></i>
+                  <?php elseif ($paso === 'Cancelado'): ?>
+                    <i class="bi bi-x-circle text-lg"></i>
+                  <?php endif; ?>
+                </div>
+                
+                <!-- Texto del paso -->
+                <div class="mt-3 text-center">
+                  <p class="text-sm <?= $claseTexto ?> transition-colors duration-300">
+                    <?= $paso ?>
+                  </p>
+                  
+                  <!-- Indicador de estado actual -->
+                  <?php if ($esActual && !$esCancelado): ?>
+                    <div class="mt-1">
+                      <span class="inline-block w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span>
+                    </div>
+                  <?php elseif ($esCancelado): ?>
+                    <div class="mt-1">
+                      <span class="inline-block w-2 h-2 bg-red-500 rounded-full"></span>
+                    </div>
+                  <?php endif; ?>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        </div>
+        
+        <!-- Información del estado actual -->
+        <div class="mt-8 p-4 bg-gray-50 rounded-lg">
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center">
+              <?php if ($estadoActual === 'Solicitado'): ?>
+                <i class="bi bi-clipboard-check text-white text-sm"></i>
+              <?php elseif ($estadoActual === 'Preparándose'): ?>
+                <i class="bi bi-gear text-white text-sm"></i>
+              <?php elseif ($estadoActual === 'En agencia'): ?>
+                <i class="bi bi-building text-white text-sm"></i>
+              <?php elseif ($estadoActual === 'En camino'): ?>
+                <i class="bi bi-truck text-white text-sm"></i>
+              <?php elseif ($estadoActual === 'Entregado'): ?>
+                <i class="bi bi-check-circle text-white text-sm"></i>
+              <?php elseif ($estadoActual === 'Cancelado'): ?>
+                <i class="bi bi-x-circle text-white text-sm"></i>
+              <?php endif; ?>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-800">Estado actual: <?= $estadoActual ?></p>
+              <p class="text-sm text-gray-600">
+                <?php
+                $mensajesEstado = [
+                  'Solicitado' => 'Tu envío ha sido registrado y está siendo procesado.',
+                  'Preparándose' => 'Estamos preparando tu paquete para el envío.',
+                  'En agencia' => 'Tu paquete está en nuestras instalaciones listo para salir.',
+                  'En camino' => 'Tu paquete está en tránsito hacia su destino.',
+                  'Entregado' => '¡Tu paquete ha sido entregado exitosamente!',
+                  'Cancelado' => 'Este envío ha sido cancelado.'
+                ];
+                echo $mensajesEstado[$estadoActual] ?? 'Estado no definido.';
+                ?>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   <?php endif; ?>
 <?php endif; ?> 
