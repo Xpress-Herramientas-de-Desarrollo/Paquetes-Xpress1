@@ -164,7 +164,7 @@
                     <i class="bi bi-check-circle text-lg"></i>
                   <?php elseif ($paso === 'Cancelado'): ?>
                     <i class="bi bi-x-circle text-lg"></i>
-                  <?php endif; ?> 
+                  <?php endif; ?>  
                 </div>
                 
                 <!-- Texto del paso -->
