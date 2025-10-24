@@ -4,9 +4,10 @@
 <main>
     <section class="bg-gradient-to-r from-orange-400 to-red-500 text-white py-20">
         <div class="max-w-screen-xl m-auto px-5 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">
-                Envíos Rápidos y Seguros con XPRESS
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 font-serif">
+              Envíos Rápidos y Seguros con XPRESS
             </h1>
+
             <p class="text-lg md:text-xl mb-8">
                 Tu solución confiable para envíos nacionales e internacionales.
             </p>
