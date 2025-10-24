@@ -2,6 +2,16 @@
 <?= $this->include('layouts/header') ?>
 
 <main class="max-w-5xl mx-auto px-4 py-8">
+  <!-- Mensaje de bienvenida -->
+  <?php if (session()->get('id_usuario')): ?>
+    <div class="mb-6 text-center">
+      <h2 class="text-xl font-semibold text-gray-800 mb-1">
+        ¡Bienvenido, <?= esc(session()->get('nombre')) ?>!
+      </h2>
+      <p class="text-gray-600">Estamos listos para ayudarte con tu envío</p>
+    </div>
+  <?php endif; ?>
+
   <section class="bg-white rounded-2xl p-6 shadow-lg">
     <h1 class="text-2xl font-bold mb-2 text-center text-orange-600">¿Qué tipo de envío deseas realizar?</h1>
     <p class="text-sm text-gray-500 mb-8 text-center">Elige una de las opciones para iniciar tu registro de envío.</p>
