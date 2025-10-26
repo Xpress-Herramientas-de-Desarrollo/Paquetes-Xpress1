@@ -6,12 +6,16 @@ Nuestro objetivo es crear una página dedicada al servicio de paquetería con en
 
 ## Integrantes
 
-Berrocal Calderon Jorck Calito 
-Castillo Tenorio Andrea Melisa
-Tocre Paucar Joseph Alberto 
+- [Berrocal Calderon Jorck Calito]
+- [Castillo Tenorio Andrea Melisa]
+- [Tocre Paucar Joseph Alberto ]
 
-
-
+## Tecnologías usadas
+- **Backend:** PHP
+- **Frontend:** HTML, CSS, JavaScript, Tailwind
+- **Base de datos:** xammp, MySQL
+- **Framework:** CodeIgnater
+- **Control de versiones:** Git y GitHub
 
 
 # CodeIgniter 4 Framework
