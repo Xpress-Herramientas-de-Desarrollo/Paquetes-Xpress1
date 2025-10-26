@@ -6,9 +6,9 @@ Nuestro objetivo es crear una página dedicada al servicio de paquetería con en
 
 ## Integrantes
 
-- [Berrocal Calderon Jorck Calito]
-- [Castillo Tenorio Andrea Melisa]
-- [Tocre Paucar Joseph Alberto ]
+- Berrocal Calderon Jorck Calito
+- Castillo Tenorio Andrea Melisa
+- Tocre Paucar Joseph Alberto
 
 ## Tecnologías usadas
 - **Backend:** PHP
