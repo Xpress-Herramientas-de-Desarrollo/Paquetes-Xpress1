@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <main class="py-16 bg-gray-100">
     <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
         <h1 class="text-3xl font-bold text-center text-[#ff7947] mb-6">Regístrate</h1>
-        <form action="<?= trim(base_url('registro/crear')) ?>" method="POST" class="space-y-6">
+        <form action="<?= trim(base_url('registro/crearUsuario')) ?>" method="POST" class="space-y-6">
             <div>
                 <label for="nombre" class="block mb-2 font-semibold text-gray-700">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required
