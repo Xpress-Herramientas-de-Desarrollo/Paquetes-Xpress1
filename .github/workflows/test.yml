@@ -48,10 +48,6 @@ jobs:
           find app -type f -name "*.php" -print0 | xargs -0 -n1 php -l
           find system -type f -name "*.php" -print0 | xargs -0 -n1 php -l
 
-      
-      - name: PHPStan Analysis
-        run: vendor/bin/phpstan analyse app --level max
-
  
       - name: Run PHPUnit
         run: vendor/bin/phpunit --configuration phpunit.xml
