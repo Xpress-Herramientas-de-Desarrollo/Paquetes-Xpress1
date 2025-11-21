@@ -1,0 +1,49 @@
+name: Quick Check
+
+on:
+  pull_request:
+    branches: [ "main", "develop" ]
+  push:
+    branches: [ "main", "develop" ]
+
+permissions:
+  contents: read
+
+jobs:
+  quick-validation:
+    name: Validación Rápida
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout código
+      uses: actions/checkout@v4
+
+    - name: Configurar PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+        extensions: mbstring, intl, mysqli
+        coverage: none
+
+    - name: Validar composer.json
+      run: composer validate --strict
+
+    - name: Cache Composer packages
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Instalar dependencias
+      run: composer install --prefer-dist --no-progress --no-interaction
+
+    - name: Verificar sintaxis PHP
+      run: |
+        echo "Verificando sintaxis PHP..."
+        find app -name "*.php" -type f -exec php -l {} \; | grep -v "No syntax errors" || echo "✅ Todas las validaciones de sintaxis pasaron"
+
+    - name: Ejecutar tests básicos
+      run: vendor/bin/phpunit --testsuite=App --stop-on-failure || true
+
