@@ -21,7 +21,7 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
-        local-dir: "./Paquetes-Xpress1"
+        local-dir: "./Paquetes-Xpress1/"
         server-dir: "/htdocs/"         
         exclude: |
           **/.git*
