@@ -129,3 +129,86 @@ h1, h2 {
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
+
+/* ======= ESTILOS MENÚ HAMBURGUESA MODERNO ======= */
+#menuToggle {
+    cursor: pointer;
+}
+
+#menuToggle span {
+    display: block;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Animación del menú lateral */
+#mobileMenu {
+    will-change: transform;
+}
+
+#mobileMenuOverlay {
+    will-change: opacity;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* Animación de entrada para items del menú */
+.menu-item {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.menu-item:hover {
+    transform: translateX(5px);
+}
+
+/* Efecto de ripple en los botones del menú */
+.menu-item::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 121, 71, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.menu-item:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Scrollbar personalizado para el menú móvil */
+#mobileMenu::-webkit-scrollbar {
+    width: 6px;
+}
+
+#mobileMenu::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+#mobileMenu::-webkit-scrollbar-thumb {
+    background: #ff7947;
+    border-radius: 3px;
+}
+
+#mobileMenu::-webkit-scrollbar-thumb:hover {
+    background: #e66735;
+}
+
+/* Animación suave para el icono de cerrar */
+#closeMenu {
+    transition: transform 0.3s ease;
+}
+
+#closeMenu:hover {
+    transform: rotate(90deg) scale(1.1);
+}
+
+/* Efecto de sombra mejorado cuando el menú está abierto */
+#mobileMenu.translate-x-0 {
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+}
