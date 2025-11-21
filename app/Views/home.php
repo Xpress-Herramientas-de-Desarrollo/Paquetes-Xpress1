@@ -4,7 +4,7 @@
 <main>
     <section class="bg-gradient-to-r from-orange-400 to-red-500 text-white py-20">
         <div class="max-w-screen-xl m-auto px-5 text-center">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 font-serif">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
               Envíos Rápidos y seguros con XPRESS
             </h1>
 
