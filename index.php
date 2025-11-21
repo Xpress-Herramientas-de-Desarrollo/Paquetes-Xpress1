@@ -9,7 +9,7 @@ use Config\Paths;
  *---------------------------------------------------------------
  */
 
-$minPhpVersion = '8.1'; // If you update this, don't forget to update `spark`.
+$minPhpVersion = '8.1'; // If you update this, don't forget to update spark.
 if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
     $message = sprintf(
         'Your PHP version must be %s or higher to run CodeIgniter. Current version: %s',
@@ -30,7 +30,7 @@ if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
  */
 
 // Path to the front controller (this file)
-define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
+define('FCPATH', _DIR_ . DIRECTORY_SEPARATOR);
 
 // Ensure the current directory is pointing to the front controller's directory
 if (getcwd() . DIRECTORY_SEPARATOR !== FCPATH) {
