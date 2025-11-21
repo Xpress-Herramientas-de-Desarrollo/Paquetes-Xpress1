@@ -1,0 +1,47 @@
+name: Test & Lint
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, intl, json
+          coverage: none
+
+
+      - name: PHP Syntax Check
+        run: |
+          find app -type f -name "*.php" -print0 | xargs -0 -n1 php -l
+          find system -type f -name "*.php" -print0 | xargs -0 -n1 php -l
+
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+
+      - name: Install ESLint and HTMLHint
+        run: npm install eslint htmlhint --save-dev
+
+
+      - name: Lint JavaScript
+        run: npx eslint **/*.js
+
+
+      - name: Lint HTML
+        run: npx htmlhint app/Views/**/*.php
