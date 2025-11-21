@@ -13,7 +13,6 @@ if ($alerta):
                 '<?= esc($alerta['mensaje']) ?>',
                 redirect
             );
-
         });
     </script>
 <?php endif; ?>
