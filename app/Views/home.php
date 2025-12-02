@@ -9,7 +9,7 @@
             </h1>
 
             <p class="text-lg md:text-xl mb-8">
-                Tu solución confiable para envíos nacionales e internacionales.
+                Tu solución confiable para todo tipo de envíos, nacionales e internacionales.
             </p>
             <a href="#"
                 class="bg-white text-red-500 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-gray-100 transition">
