@@ -20,14 +20,16 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
-        
-        server-dir: "/public_html/"
+
         local-dir: "./"
+        server-dir: "/public_html/"
+
+        exclude-glob: |
+          .git/
+          **/.git/
+          **/.git**
+          **/.*        # Excluye TODOS los archivos ocultos
+          **/.github/**
+          **/README.md
 
         dangerous-clean-slate: false
-
-        exclude: |
-          **/.git*
-          **/.github/*
-          **/.gitignore
-          **/README.md
