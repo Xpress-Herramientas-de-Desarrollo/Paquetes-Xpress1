@@ -22,13 +22,10 @@ jobs:
         port: ${{ secrets.FTP_PORT }}
 
         local-dir: "./"
-        server-dir: "/public_html/"
+        server-dir: "/home/www/paqueteriaxpress.mypressonline.com/"
 
         exclude-glob: |
-          .git/
-          **/.git/
-          **/.git**
-          **/.*        # Excluye TODOS los archivos ocultos
+          **/.*
           **/.github/**
           **/README.md
 
