@@ -1,4 +1,4 @@
-name: Deploy to AwardSpace
+name: Deploy to InfinityFree
 
 on:
   push:
@@ -7,26 +7,23 @@ on:
 
 jobs:
   ftp-deploy:
+    name: FTP Deploy
     runs-on: ubuntu-latest
-
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: FTP Deploy
+    - name: Upload to InfinityFree via FTP
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: ${{ secrets.FTP_PORT }}
-
-        local-dir: "./"
-        server-dir: "/home/www/paqueteriaxpress.mypressonline.com/"
-
-        exclude-glob: |
-          **/.*
-          **/.github/**
+        local-dir: "./Paquetes-Xpress1/"
+        server-dir: "/htdocs/"         
+        exclude: |
+          **/.git*
+          **/.github/*
           **/README.md
-
-        dangerous-clean-slate: false
