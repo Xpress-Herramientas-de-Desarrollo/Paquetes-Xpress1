@@ -33,10 +33,10 @@ display_errors = 1
 # DATABASE
 #--------------------------------------------------------------------
 
-database.default.hostname = localhost
-database.default.database = bd_xpress
-database.default.username = root
-database.default.password = 
+database.default.hostname = db
+database.default.database = xpressdb
+database.default.username = xpress
+database.default.password = xpress123
 database.default.DBDriver = MySQLi
 database.default.DBPrefix =
 database.default.port     = 3306
