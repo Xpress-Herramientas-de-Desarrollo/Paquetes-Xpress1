@@ -6,9 +6,6 @@ writable/session/
 *.log
 *.tmp
 
-# Composer
-/vendor/
-
 # Sistema operativo
 .DS_Store
 Thumbs.db
