@@ -7,23 +7,27 @@ on:
 
 jobs:
   ftp-deploy:
-    name: FTP Deploy
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Upload to AwardSpace via FTP
+    - name: FTP Deploy
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: ${{ secrets.FTP_HOST }}    
-        username: ${{ secrets.FTP_USERNAME }}  
-        password: ${{ secrets.FTP_PASSWORD }}  
-        port: ${{ secrets.FTP_PORT }}          
-        local-dir: "./"                        
-        server-dir: "/public_html/"          
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: ${{ secrets.FTP_PORT }}
+        
+        server-dir: "/public_html/"
+        local-dir: "./"
+
+        dangerous-clean-slate: false
+
         exclude: |
           **/.git*
           **/.github/*
+          **/.gitignore
           **/README.md
