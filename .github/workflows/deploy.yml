@@ -1,4 +1,4 @@
-name: Deploy to InfinityFree
+name: Deploy to AwardSpace
 
 on:
   push:
@@ -14,15 +14,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Upload to InfinityFree via FTP
+    - name: Upload to AwardSpace via FTP
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: ${{ secrets.FTP_HOST }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        port: ${{ secrets.FTP_PORT }}
-        local-dir: "./"
-        server-dir: "/htdocs/"         
+        server: ${{ secrets.FTP_HOST }}    
+        username: ${{ secrets.FTP_USERNAME }}  
+        password: ${{ secrets.FTP_PASSWORD }}  
+        port: ${{ secrets.FTP_PORT }}          
+        local-dir: "./"                        
+        server-dir: "/public_html/"          
         exclude: |
           **/.git*
           **/.github/*
